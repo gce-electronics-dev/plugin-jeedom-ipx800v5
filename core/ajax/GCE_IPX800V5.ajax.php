@@ -29,8 +29,8 @@ try {
 		if (!is_object($eqLogic)) {
 			throw new Exception('{{Equipement introuvable}} : ' . init('eqLogic_id'));
 		}
-		if ($eqLogic->getEqType_name() != 'ipx800v5') {
-			throw new Exception('{{Equipement pas de type ipx800v5}}');
+		if ($eqLogic->getEqType_name() != 'GCE_IPX800V5') {
+			throw new Exception('{{Equipement pas de type GCE_IPX800V5}}');
 		}
 		$eqLogic->applyCmdTemplate(json_decode(init('config'), true));
 		ajax::success();

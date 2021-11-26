@@ -47,7 +47,7 @@
 /* * *************************** Includes ********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class ipx800v5 extends eqLogic {
+class GCE_IPX800V5 extends eqLogic {
 	/* Preset Tab */
 
 	/* Preset Tab IPX */
@@ -222,17 +222,17 @@ class ipx800v5 extends eqLogic {
 	public static function event() {
 		if (init('onvent') == 1) { //D'origine dans la classe
 			$cache = array();
-			foreach (self::searchConfiguration('"ip":"' . init('ip') . '"', 'ipx800v5') as $ipx800v5) {
-				if (!isset($cache[$ipx800v5->getConfiguration('ip')])) {
-					$cache[$ipx800v5->getConfiguration('ip')] = $ipx800v5->getIPX();
+			foreach (self::searchConfiguration('"ip":"' . init('ip') . '"', 'GCE_IPX800V5') as $GCE_IPX800V5) {
+				if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')])) {
+					$cache[$GCE_IPX800V5->getConfiguration('ip')] = $GCE_IPX800V5->getIPX();
 				}
-				ipx800v5::pull($ipx800v5->getId(), $cache);
+				GCE_IPX800V5::pull($GCE_IPX800V5->getId(), $cache);
 			}
 			return;
 		}
-		$cmd = ipx800v5Cmd::byId(init('id'));
-		if (!is_object($cmd) || $cmd->getEqType() != 'ipx800v5') {
-			throw new Exception(__('Commande ID ipx800v5 inconnue, ou la commande n\'est pas de type ipx800v5 : ', __FILE__) . init('id').', Valeur: '.init('value'));
+		$cmd = GCE_IPX800V5Cmd::byId(init('id'));
+		if (!is_object($cmd) || $cmd->getEqType() != 'GCE_IPX800V5') {
+			throw new Exception(__('Commande ID GCE_IPX800V5 inconnue, ou la commande n\'est pas de type GCE_IPX800V5 : ', __FILE__) . init('id').', Valeur: '.init('value'));
 		}
 		$cmd->event(init('value'));
 	}
@@ -241,7 +241,7 @@ class ipx800v5 extends eqLogic {
 		$return = array();
 		$return['log'] = '';
 		$return['state'] = 'nok';
-		$cron = cron::byClassAndFunction('ipx800v5', 'pull');
+		$cron = cron::byClassAndFunction('GCE_IPX800V5', 'pull');
 		if (is_object($cron) && $cron->running()) {
 			$return['state'] = 'ok';
 		}
@@ -255,17 +255,17 @@ class ipx800v5 extends eqLogic {
 		if ($deamon_info['launchable'] != 'ok') {
 			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
 		}
-		$cron = cron::byClassAndFunction('ipx800v5', 'pull');
+		$cron = cron::byClassAndFunction('GCE_IPX800V5', 'pull');
 		if (!is_object($cron)) {
 			throw new Exception(__('Tâche cron introuvable', __FILE__));
 		}
-		$cron->setDeamonSleepTime(config::byKey('api::frequency', 'ipx800v5', 1));
+		$cron->setDeamonSleepTime(config::byKey('api::frequency', 'GCE_IPX800V5', 1));
 		$cron->save();
 		$cron->run();
 	}
 
 	public static function deamon_stop() {
-		$cron = cron::byClassAndFunction('ipx800v5', 'pull');
+		$cron = cron::byClassAndFunction('GCE_IPX800V5', 'pull');
 		if (!is_object($cron)) {
 			throw new Exception(__('Tâche cron introuvable', __FILE__));
 		}
@@ -273,7 +273,7 @@ class ipx800v5 extends eqLogic {
 	}
 
 	public static function deamon_changeAutoMode($_mode) {
-		$cron = cron::byClassAndFunction('ipx800v5', 'pull');
+		$cron = cron::byClassAndFunction('GCE_IPX800V5', 'pull');
 		if (!is_object($cron)) {
 			throw new Exception(__('Tâche cron introuvable', __FILE__));
 		}
@@ -291,11 +291,11 @@ class ipx800v5 extends eqLogic {
 	*/
 	public static function pull($_eqLogic_id = null, $_cache = null) {
 		if (self::$_eqLogics == null) {
-			self::$_eqLogics = self::byType('ipx800v5',true);
+			self::$_eqLogics = self::byType('GCE_IPX800V5',true);
 		}
 		$cache = array();
-		foreach (self::$_eqLogics as &$ipx800v5) { //pour chaque Equipement IPX800 V5
-			$_eqLogic_id = $ipx800v5->getId();
+		foreach (self::$_eqLogics as &$GCE_IPX800V5) { //pour chaque Equipement IPX800 V5
+			$_eqLogic_id = $GCE_IPX800V5->getId();
 
 			$cmds = cmd::byEqLogicId($_eqLogic_id); //get all cmd de l'equipement
 			$refreshIo  = array();
@@ -326,36 +326,36 @@ class ipx800v5 extends eqLogic {
 				}
 			}
 			if ($io > 0) { //si on a au moins une IO a refresh
-				if (!isset($cache[$ipx800v5->getConfiguration('ip')]["io"])) { //si on a pas encore GET io collection
-					$urlGet = 'http://' . $ipx800v5->getConfiguration('ip') . '/api/core/io?ApiKey=' . $ipx800v5->getConfiguration('apikey');
-					$cache[$ipx800v5->getConfiguration('ip')]["io"] = ipx800v5::get($urlGet, 1); //GET Io collection
+				if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')]["io"])) { //si on a pas encore GET io collection
+					$urlGet = 'http://' . $GCE_IPX800V5->getConfiguration('ip') . '/api/core/io?ApiKey=' . $GCE_IPX800V5->getConfiguration('apikey');
+					$cache[$GCE_IPX800V5->getConfiguration('ip')]["io"] = GCE_IPX800V5::get($urlGet, 1); //GET Io collection
 				}
-				$ios = $cache[$ipx800v5->getConfiguration('ip')]["io"];
+				$ios = $cache[$GCE_IPX800V5->getConfiguration('ip')]["io"];
 				for ($i=0; $i < sizeof($refreshIo); $i++) { // pour chaque IO à refresh
 					for ($j=0; $j < sizeof($ios); $j++) { // pour chaque IO de Io collection
 						if ($refreshIo[$i][1] == $ios[$j]["_id"]) { // si les Id correspondent
-							$ipx800v5->checkAndUpdateCmd($refreshIo[$i][0], $ios[$j]["on"], false); //update cmd value
+							$GCE_IPX800V5->checkAndUpdateCmd($refreshIo[$i][0], $ios[$j]["on"], false); //update cmd value
 							break;
 						}
 					}
 				}
-				usleep(config::byKey('api::frequency', 'ipx800v5', 1) * 1000000 / 2); //Sleep 1/2 frequency pour ne pas faire
+				usleep(config::byKey('api::frequency', 'GCE_IPX800V5', 1) * 1000000 / 2); //Sleep 1/2 frequency pour ne pas faire
 			}
 			if ($ana > 0) { //si on a au moins une Ana a refresh
-				if (!isset($cache[$ipx800v5->getConfiguration('ip')]["ana"])) { //si on a pas encore GET ana collection
-					$urlGet = 'http://' . $ipx800v5->getConfiguration('ip') . '/api/core/ana?ApiKey=' . $ipx800v5->getConfiguration('apikey');
-					$cache[$ipx800v5->getConfiguration('ip')]["ana"] = ipx800v5::get($urlGet, 1); //GET Ana collection
+				if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"])) { //si on a pas encore GET ana collection
+					$urlGet = 'http://' . $GCE_IPX800V5->getConfiguration('ip') . '/api/core/ana?ApiKey=' . $GCE_IPX800V5->getConfiguration('apikey');
+					$cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"] = GCE_IPX800V5::get($urlGet, 1); //GET Ana collection
 				}
-				$anas = $cache[$ipx800v5->getConfiguration('ip')]["ana"];
+				$anas = $cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"];
 				for ($i=0; $i < sizeof($refreshAna); $i++) { // pour chaque Ana à refresh
 					for ($j=0; $j < sizeof($anas); $j++) { // pour chaque Ana de Ana collection
 						if ($refreshAna[$i][1] == $anas[$j]["_id"]) { // si les Id correspondent
-							$ipx800v5->checkAndUpdateCmd($refreshAna[$i][0], $anas[$j]["value"], false); //update cmd value
+							$GCE_IPX800V5->checkAndUpdateCmd($refreshAna[$i][0], $anas[$j]["value"], false); //update cmd value
 							break;
 						}
 					}
 				}
-				usleep(config::byKey('api::frequency', 'ipx800v5', 1) * 1000000 / 2);
+				usleep(config::byKey('api::frequency', 'GCE_IPX800V5', 1) * 1000000 / 2);
 			}
 		}
 	}
@@ -383,7 +383,7 @@ class ipx800v5 extends eqLogic {
 
 					$cmd = $this->getCmd(null, $name.'_'.$i);
 					if (!is_object($cmd)) {
-						$cmd = new ipx800v5Cmd();
+						$cmd = new GCE_IPX800V5Cmd();
 					}
 					$cmd->setName(__($dispName.'_'.$i, __FILE__));
 					$cmd->setEqLogic_id($this->getId());
@@ -436,7 +436,7 @@ class ipx800v5 extends eqLogic {
 
 								$cmd = $this->getCmd(null, $name . $i.'_'.$j);
 								if (!is_object($cmd)) {
-									$cmd = new ipx800v5Cmd();
+									$cmd = new GCE_IPX800V5Cmd();
 								}
 								$cmd->setName(__($dispName.'_'.$j, __FILE__));
 								$cmd->setEqLogic_id($this->getId());
@@ -472,7 +472,7 @@ class ipx800v5 extends eqLogic {
 
 							$cmd = $this->getCmd(null, $name . $i.'_All');
 							if (!is_object($cmd)) {
-								$cmd = new ipx800v5Cmd();
+								$cmd = new GCE_IPX800V5Cmd();
 							}
 							$cmd->setName(__($dispName.'_All', __FILE__));
 							$cmd->setEqLogic_id($this->getId());
@@ -537,7 +537,7 @@ class ipx800v5 extends eqLogic {
 	public function postSave() {
 		$refresh = $this->getCmd(null, 'refresh');
 		if (!is_object($refresh)) {
-			$refresh = new ipx800v5Cmd();
+			$refresh = new GCE_IPX800V5Cmd();
 		}
 		$refresh->setName(__('Rafraîchir', __FILE__));
 		$refresh->setEqLogic_id($this->getId());
@@ -546,15 +546,15 @@ class ipx800v5 extends eqLogic {
 		$refresh->setSubType('other');
 		$refresh->save();
 
-		foreach (ipx800v5::TYPE_DATA_IPX as $key => $value) {
+		foreach (GCE_IPX800V5::TYPE_DATA_IPX as $key => $value) {
 			$this->presetCmd_IPX($key, $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8]);
 		}
 
-		foreach (ipx800v5::TYPE_DATA_EXT as $key => $value) {
+		foreach (GCE_IPX800V5::TYPE_DATA_EXT as $key => $value) {
 			$this->presetCmd_EXT($key, $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]);
 		}
 
-		foreach (ipx800v5::TYPE_DATA_OBJ as $key => $value) {
+		foreach (GCE_IPX800V5::TYPE_DATA_OBJ as $key => $value) {
 			$this->presetCmd_EXT($key, $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]);
 		}
 	}
@@ -589,7 +589,7 @@ class ipx800v5 extends eqLogic {
 		try {
 			$return = array_merge($return, is_json($request_http->exec(), array()));
 		} catch (Exception $e) {}
-		//log::add('ipx800v5', 'debug', $url . ' GET : ' . json_encode($return));
+		//log::add('GCE_IPX800V5', 'debug', $url . ' GET : ' . json_encode($return));
 		return $return;
 	}
 	/***/
@@ -615,20 +615,20 @@ class ipx800v5 extends eqLogic {
 
 		$resp = curl_exec($curl);
 		curl_close($curl);
-		//log::add('ipx800v5', 'debug', $url . ' PUT : ' . json_encode($resp));
+		//log::add('GCE_IPX800V5', 'debug', $url . ' PUT : ' . json_encode($resp));
 		return $resp;
 	}
 	/***/
 }
 
-class ipx800v5Cmd extends cmd {
+class GCE_IPX800V5Cmd extends cmd {
 	/* Command Execute */
 	public function execute($_options = array()) {
 		$eqLogic = $this->getEqLogic();
 
 		/* Refresh */
 		if ($this->getLogicalId() == 'refresh') {
-			ipx800v5::pull($this->getEqLogic_Id());
+			GCE_IPX800V5::pull($this->getEqLogic_Id());
 			return;
 		}
 		/***/

@@ -1,6 +1,6 @@
 {
-    "plugins\/ipx800v5\/plugin_info\/configuration.php": {
-        "Demande à faire aux ipx800v5": "Fragen Sie ipx800v5",
+    "plugins\/GCE_IPX800V5\/plugin_info\/configuration.php": {
+        "Demande à faire aux GCE_IPX800V5": "Fragen Sie GCE_IPX800V5",
         "[All] Tous": "[Alle] Alle",
         "[A] Entrée analogique": "[A] Analogeingang",
         "[C] Compteurs": "[C] Zähler",
@@ -22,17 +22,17 @@
         "Sauvegarder automatique la configuration des IPX800 tous les jours": "Tägliche automatische Sicherung der IPX800-Konfiguration",
         "URL API": "API-URL"
     },
-    "plugins\/ipx800v5\/desktop\/modal\/cmd.template.php": {
+    "plugins\/GCE_IPX800V5\/desktop\/modal\/cmd.template.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Equipement introuvable": "Ausrüstung nicht gefunden",
-        "Equipement pas de type ipx800v5": "Geräte nicht Typ ipx800v5",
+        "Equipement pas de type GCE_IPX800V5": "Geräte nicht Typ GCE_IPX800V5",
         "Template": "Schablone",
         "Choisir": "Wählen",
         "Créér": "Schaffen",
         "Vous devez choisir un template": "Sie müssen eine Vorlage auswählen",
         "Création réussie": "Erfolgreiche Erstellung"
     },
-    "plugins\/ipx800v5\/desktop\/php\/ipx800v5.php": {
+    "plugins\/GCE_IPX800V5\/desktop\/php\/GCE_IPX800V5.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Gestion": "Verwaltung",
         "Ajouter": "Hinzufügen",
@@ -64,7 +64,7 @@
         "Paramètres": "Einstellungen",
         "Action": "Aktion"
     },
-    "plugins\/ipx800v5\/desktop\/js\/ipx800v5.js": {
+    "plugins\/GCE_IPX800V5\/desktop\/js\/GCE_IPX800V5.js": {
         "Template commande IPX800": "IPX800 Bestellvorlage",
         "La valeur de la commande vaut par défaut la commande": "Der Wert des Befehls ist standardmäßig der Befehl",
         "On\/Valeur": "Ein \/ Wert",
@@ -129,16 +129,16 @@
         "Inverser": "Umgekehrt",
         "Tester": "Test"
     },
-    "plugins\/ipx800v5\/core\/ajax\/ipx800v5.ajax.php": {
+    "plugins\/GCE_IPX800V5\/core\/ajax\/GCE_IPX800V5.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:",
         "Equipement introuvable": "Ausrüstung nicht gefunden",
-        "Equipement pas de type ipx800v5": "Geräte nicht Typ ipx800v5"
+        "Equipement pas de type GCE_IPX800V5": "Geräte nicht Typ GCE_IPX800V5"
     },
-    "plugins\/ipx800v5\/core\/class\/ipx800v5.class.php": {
+    "plugins\/GCE_IPX800V5\/core\/class\/GCE_IPX800V5.class.php": {
         "Il y a un problème dans les données des ": "Es gibt ein Problem in den Daten der",
         "Il y a un problème dans les données ": "Es liegt ein Problem mit den Daten vor",
-        "Commande ID ipx800v5 inconnue, ou la commande n\\'est pas de type ipx800v5 : ": "Unbekannter Befehl ipx800v5 ID, oder der Befehl ist nicht vom Typ ipx800v5:",
+        "Commande ID GCE_IPX800V5 inconnue, ou la commande n\\'est pas de type GCE_IPX800V5 : ": "Unbekannter Befehl GCE_IPX800V5 ID, oder der Befehl ist nicht vom Typ GCE_IPX800V5:",
         "Veuillez vérifier la configuration": "Bitte überprüfen Sie die Konfiguration",
         "Tâche cron introuvable": "Cron-Aufgabe nicht gefunden",
         "Impossible de récuperer la sauvegarde de l\\'ipx800 ": "Backup von ipx800 kann nicht abgerufen werden",

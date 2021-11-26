@@ -16,10 +16,10 @@
  */
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 function ipx800v5_install() {
-	$cron = cron::byClassAndFunction('ipx800v5', 'pull');
+	$cron = cron::byClassAndFunction('GCE_IPX800V5', 'pull');
 	if (!is_object($cron)) {
 		$cron = new cron();
-		$cron->setClass('ipx800v5');
+		$cron->setClass('GCE_IPX800V5');
 		$cron->setFunction('pull');
 		$cron->setEnable(1);
 		$cron->setDeamon(1);
@@ -30,7 +30,7 @@ function ipx800v5_install() {
 	}
 }
 function ipx800v5_update() {
-	$cron = cron::byClassAndFunction('ipx800v5', 'pull');
+	$cron = cron::byClassAndFunction('GCE_IPX800V5', 'pull');
 	if (!is_object($cron)) {
 		$cron = new cron();
 	}
@@ -43,12 +43,12 @@ function ipx800v5_update() {
 	$cron->setSchedule('* * * * *');
 	$cron->save();
 	$cron->stop();
-	foreach (ipx800v5::byType('ipx800v5') as $ipx800v5) {
+	foreach (ipx800v5::byType('GCE_IPX800V5') as $ipx800v5) {
 		$ipx800v5->save();
 	}
 }
 function ipx800v5_remove() {
-	$cron = cron::byClassAndFunction('ipx800v5', 'pull');
+	$cron = cron::byClassAndFunction('GCE_IPX800V5', 'pull');
 	if (is_object($cron)) {
 		$cron->remove();
 	}
