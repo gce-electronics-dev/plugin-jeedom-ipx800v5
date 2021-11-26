@@ -1,0 +1,52 @@
+{
+	"thl": {
+		"name" : "THL",
+		"parameters" : [
+			{
+				"name" : "Numéro du THL",
+				"key" : "THLNUM",
+				"type" : "number"
+			}
+		],
+		"commands" : [
+			{
+				"name": "Température #THLNUM#",
+				"type": "info",
+				"subtype": "numeric",
+				"generic_type" : "TEMPERATURE",
+				"isVisible": 1,
+				"isHistorized": 1,
+				"unite" : "°C",
+				"configuration" : {
+					"infoType" : "THL",
+					"infoParameterR" : "#THLNUM#-TEMP"
+				}
+			},
+			{
+				"name": "Humidité #THLNUM#",
+				"type": "info",
+				"subtype": "numeric",
+				"generic_type" : "HUMIDITY",
+				"isVisible": 1,
+				"isHistorized": 1,
+				"unite" : "%",
+				"configuration" : {
+					"infoType" : "THL",
+					"infoParameterR" : "#THLNUM#-HUM"
+				}
+			},
+			{
+				"name": "Luminosité #THLNUM#",
+				"type": "info",
+				"subtype": "numeric",
+				"generic_type" : "BRIGHTNESS",
+				"isVisible": 1,
+				"isHistorized": 1,
+				"configuration" : {
+					"infoType" : "THL",
+					"infoParameterR" : "#THLNUM#-LUM"
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,50 @@
+{
+	"vr": {
+		"name" : "Voler roulant",
+		"parameters" : [
+			{
+				"name" : "Numéro de l'extention et du volet (ex 1-2)",
+				"key" : "RINUM",
+				"type" : "input"
+			},
+			{
+				"name" : "Numéro du volet (ex 03)",
+				"key" : "RANUM",
+				"type" : "number"
+			}
+		],
+		"commands" : [
+			{
+				"name": "Etat #RANUM#",
+				"type": "info",
+				"subtype": "numeric",
+				"generic_type" : "FLAP_STATE",
+				"isVisible": 0,
+				"isHistorized": 0,
+				"unite" : "%",
+				"configuration" : {
+					"minValue" : 0,
+					"maxValue" : 100,
+					"infoType" : "VR",
+					"infoParameterVR" : "#RINUM#"
+				}
+			},
+			{
+				"name": "Position #RANUM#",
+				"type": "action",
+				"subtype": "slider",
+				"generic_type" : "FLAP_SLIDER",
+				"isVisible": 1,
+				"value" : "Etat #RANUM#",
+				"configuration" : {
+					"minValue" : 0,
+					"maxValue" : 100,
+					"actionArgument" : "VR",
+					"actionCmd" : "Set",
+					"actionParameterVR" : "#RANUM#",
+					"actionOptionVR" : "#slider#"
+				}
+			}
+		]
+	}
+}

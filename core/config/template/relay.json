@@ -1,0 +1,58 @@
+{
+	"relay": {
+		"name" : "Relai",
+		"parameters" : [
+			{
+				"name" : "Numéro du relai",
+				"key" : "RNUM",
+				"type" : "number"
+			}
+		],
+		"commands" : [
+			{
+				"name": "Etat #RNUM#",
+				"type": "info",
+				"subtype": "binary",
+				"generic_type" : "ENERGY_STATE",
+				"isVisible": 0,
+				"isHistorized": 0,
+				"configuration" : {
+					"infoType" : "R",
+					"infoParameterR" : "#RNUM#"
+				},
+				"configuration": {
+					"repeatEventManagement": "never"
+				}
+			},
+			{
+				"name": "On #RNUM#",
+				"type": "action",
+				"subtype": "other",
+				"generic_type" : "ENERGY_ON",
+				"isVisible": 1,
+				"value" : "Etat #RNUM#",
+				"configuration" : {
+					"actionArgument" : "R",
+					"actionCmd" : "Set",
+					"actionParameterR" : "#RNUM#"
+				}
+			},
+			{
+				"name": "Off #RNUM#",
+				"type": "action",
+				"subtype": "other",
+				"generic_type" : "ENERGY_OFF",
+				"isVisible": 1,
+				"value" : "Etat #RNUM#",
+				"configuration" : {
+					"actionArgument" : "R",
+					"actionCmd" : "Clear",
+					"actionParameterR" : "#RNUM#"
+				},
+				"configuration": {
+					"repeatEventManagement": "never"
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,102 @@
+{
+	"fp": {
+		"name" : "Fil pilote",
+		"parameters" : [
+			{
+				"name" : "Extension Zone (sous la forme #ext# Zone #zone#, ex : 1 Zone 2)",
+				"key" : "EXTZONE",
+				"type" : "input"
+			},
+			{
+				"name" : "Numéro de la zone (1 à 16)",
+				"key" : "ZONE",
+				"type" : "number"
+			}
+		],
+		"commands" : [
+			{
+				"name": "Etat #ZONE#",
+				"type": "info",
+				"subtype": "string",
+				"isVisible": 1,
+				"isHistorized": 0,
+				"configuration" : {
+					"infoType" : "FP",
+					"infoParameterFP" : "#EXTZONE#"
+				}
+			},
+			{
+				"name": "#ZONE# Mode confort",
+				"type": "action",
+				"subtype": "other",
+				"isVisible": 1,
+				"configuration" : {
+					"actionArgument" : "FP",
+					"actionCmd" : "Set",
+					"actionParameterFP" : "#ZONE#",
+					"actionOptionFP" : "0"
+				}
+			},
+			{
+				"name": "#ZONE# Mode eco",
+				"type": "action",
+				"subtype": "other",
+				"isVisible": 1,
+				"configuration" : {
+					"actionArgument" : "FP",
+					"actionCmd" : "Set",
+					"actionParameterFP" : "#ZONE#",
+					"actionOptionFP" : "1"
+				}
+			},
+			{
+				"name": "#ZONE# Mode Hors Gel",
+				"type": "action",
+				"subtype": "other",
+				"isVisible": 1,
+				"configuration" : {
+					"actionArgument" : "FP",
+					"actionCmd" : "Set",
+					"actionParameterFP" : "#ZONE#",
+					"actionOptionFP" : "2"
+				}
+			},
+			{
+				"name": "#ZONE# Mode stop",
+				"type": "action",
+				"subtype": "other",
+				"isVisible": 1,
+				"configuration" : {
+					"actionArgument" : "FP",
+					"actionCmd" : "Set",
+					"actionParameterFP" : "#ZONE#",
+					"actionOptionFP" : "3"
+				}
+			},
+			{
+				"name": "#ZONE# Mode confort -1",
+				"type": "action",
+				"subtype": "other",
+				"isVisible": 1,
+				"configuration" : {
+					"actionArgument" : "FP",
+					"actionCmd" : "Set",
+					"actionParameterFP" : "#ZONE#",
+					"actionOptionFP" : "4"
+				}
+			},
+			{
+				"name": "#ZONE# Mode confort -2",
+				"type": "action",
+				"subtype": "other",
+				"isVisible": 1,
+				"configuration" : {
+					"actionArgument" : "FP",
+					"actionCmd" : "Set",
+					"actionParameterFP" : "#ZONE#",
+					"actionOptionFP" : "5"
+				}
+			}
+		]
+	}
+}
