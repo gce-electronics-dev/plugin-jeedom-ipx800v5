@@ -1,6 +1,6 @@
 {
-    "plugins\/GCE_GCE_IPX800V5\/plugin_info\/configuration.php": {
-        "Demande à faire aux GCE_GCE_IPX800V5": "Demande à faire aux GCE_GCE_IPX800V5",
+    "plugins\/GCE_IPX800V5\/plugin_info\/configuration.php": {
+        "Demande à faire aux GCE_IPX800V5": "Demande à faire aux GCE_IPX800V5",
         "[All] Tous": "[All] Tous",
         "[A] Entrée analogique": "[A] Entrée analogique",
         "[C] Compteurs": "[C] Compteurs",
@@ -22,17 +22,17 @@
         "Sauvegarder automatique la configuration des IPX800 tous les jours": "Sauvegarder automatique la configuration des IPX800 tous les jours",
         "URL API": "URL API"
     },
-    "plugins\/GCE_GCE_IPX800V5\/desktop\/modal\/cmd.template.php": {
+    "plugins\/GCE_IPX800V5\/desktop\/modal\/cmd.template.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Equipement introuvable": "Equipement introuvable",
-        "Equipement pas de type GCE_GCE_IPX800V5": "Equipement pas de type GCE_GCE_IPX800V5",
+        "Equipement pas de type GCE_IPX800V5": "Equipement pas de type GCE_IPX800V5",
         "Template": "テンプレート",
         "Choisir": "選択",
         "Créér": "作ります",
         "Vous devez choisir un template": "Vous devez choisir un template",
         "Création réussie": "Création réussie"
     },
-    "plugins\/GCE_GCE_IPX800V5\/desktop\/php\/GCE_GCE_IPX800V5.php": {
+    "plugins\/GCE_IPX800V5\/desktop\/php\/GCE_IPX800V5.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Gestion": "管理",
         "Ajouter": "加えます",
@@ -64,7 +64,7 @@
         "Paramètres": "設定",
         "Action": "アクション"
     },
-    "plugins\/GCE_GCE_IPX800V5\/desktop\/js\/GCE_GCE_IPX800V5.js": {
+    "plugins\/GCE_IPX800V5\/desktop\/js\/GCE_IPX800V5.js": {
         "Template commande IPX800": "Template commande IPX800",
         "La valeur de la commande vaut par défaut la commande": "La valeur de la commande vaut par défaut la commande",
         "On\/Valeur": "On\/Valeur",
@@ -129,16 +129,16 @@
         "Inverser": "逆",
         "Tester": "テスト"
     },
-    "plugins\/GCE_GCE_IPX800V5\/core\/ajax\/GCE_GCE_IPX800V5.ajax.php": {
+    "plugins\/GCE_IPX800V5\/core\/ajax\/GCE_IPX800V5.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません：",
         "Equipement introuvable": "Equipement introuvable",
-        "Equipement pas de type GCE_GCE_IPX800V5": "Equipement pas de type GCE_GCE_IPX800V5"
+        "Equipement pas de type GCE_IPX800V5": "Equipement pas de type GCE_IPX800V5"
     },
-    "plugins\/GCE_GCE_IPX800V5\/core\/class\/GCE_GCE_IPX800V5.class.php": {
+    "plugins\/GCE_IPX800V5\/core\/class\/GCE_IPX800V5.class.php": {
         "Il y a un problème dans les données des ": "Il y a un problème dans les données des",
         "Il y a un problème dans les données ": "Il y a un problème dans les données",
-        "Commande ID GCE_GCE_IPX800V5 inconnue, ou la commande n\\'est pas de type GCE_GCE_IPX800V5 : ": "Commande ID GCE_GCE_IPX800V5 inconnue, ou la commande n\\'est pas de type GCE_GCE_IPX800V5 :",
+        "Commande ID GCE_IPX800V5 inconnue, ou la commande n\\'est pas de type GCE_IPX800V5 : ": "Commande ID GCE_IPX800V5 inconnue, ou la commande n\\'est pas de type GCE_IPX800V5 :",
         "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
         "Tâche cron introuvable": "Tâche cron introuvable",
         "Impossible de récuperer la sauvegarde de l\\'ipx800 ": "Impossible de récuperer la sauvegarde de l\\'ipx800",
