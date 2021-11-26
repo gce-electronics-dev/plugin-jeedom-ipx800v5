@@ -2,24 +2,24 @@
     "id": "GCE_IPX800V5",
     "name": "GCE IPX800 V5",
     "description": {
-        "fr_FR": "Plugin pour piloter l'IPX 800",
-        "en_US": "Plugin to control the IPX 800",
-        "es_ES": "Complemento para controlar el IPX 800",
-        "de_DE": "Plugin zur Steuerung des IPX 800",
-        "pt_PT": "Plugin para controlar o IPX 800",
-        "ru_RU": "Plugin pour piloter l'IPX 800",
-        "id_ID": "Plugin pour piloter l'IPX 800",
-        "it_IT": "Plugin pour piloter l'IPX 800",
-        "ja_JP": "Plugin pour piloter l'IPX 800",
-        "tr": "Plugin pour piloter l'IPX 800"
+        "fr_FR": "Plugin pour piloter l'IPX 800 V5",
+        "en_US": "Plugin to control the IPX 800 V5",
+        "es_ES": "Complemento para controlar el IPX 800 V5",
+        "de_DE": "Plugin zur Steuerung des IPX 800 V5",
+        "pt_PT": "Plugin para controlar o IPX 800 V5",
+        "ru_RU": "Plugin pour piloter l'IPX 800 V5",
+        "id_ID": "Plugin pour piloter l'IPX 800 V5",
+        "it_IT": "Plugin pour piloter l'IPX 800 V5",
+        "ja_JP": "Plugin pour piloter l'IPX 800 V5",
+        "tr": "Plugin pour piloter l'IPX 800 V5"
     },
     "licence": "AGPL",
     "author": "Adrien GCE",
     "require": "3.3.31",
     "category": "automation protocol",
     "hasOwnDeamon": true,
-    "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/GCE_IPX800V5\/changelog",
-    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/GCE_IPX800V5\/",
+    "changelog": "https:\/\/v5.gce-electronics.com\/?CAT=jeedom",
+    "documentation": "https:\/\/v5.gce-electronics.com\/?CAT=jeedom",
     "language": [
         "fr_FR",
         "en_US",
@@ -41,6 +41,6 @@
         "mobile",
         "v4"
     ],
-    "changelog_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/GCE_IPX800V5\/beta\/changelog",
-    "documentation_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/GCE_IPX800V5\/beta"
+    "changelog_beta": "https:\/\/v5.gce-electronics.com\/?CAT=jeedom",
+    "documentation_beta": "https:\/\/v5.gce-electronics.com\/?CAT=jeedom"
 }
