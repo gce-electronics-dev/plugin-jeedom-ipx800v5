@@ -1,5 +1,5 @@
 {
-    "id": "GCE_IPX800V5",
+    "id": "GCE_GCE_IPX800V5",
     "name": "GCE IPX800 V5",
     "description": {
         "fr_FR": "Plugin pour piloter l'IPX 800",
@@ -18,8 +18,8 @@
     "require": "3.3.31",
     "category": "automation protocol",
     "hasOwnDeamon": true,
-    "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/ipx800v5\/changelog",
-    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/ipx800v5\/",
+    "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/GCE_IPX800V5\/changelog",
+    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/GCE_IPX800V5\/",
     "language": [
         "fr_FR",
         "en_US",
@@ -41,6 +41,6 @@
         "mobile",
         "v4"
     ],
-    "changelog_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/ipx800v5\/beta\/changelog",
-    "documentation_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/ipx800v5\/beta"
+    "changelog_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/GCE_IPX800V5\/beta\/changelog",
+    "documentation_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/GCE_IPX800V5\/beta"
 }

@@ -31,7 +31,7 @@
 
 # 2019.06.13
 
-- Hinzufügen eines automatischen täglichen Backup-Systems für ipx800v5
+- Hinzufügen eines automatischen täglichen Backup-Systems für GCE_IPX800V5
 - PWM-Unterstützung nur in einer Farbe
 - Unterdrückung des Neustarts des Dämons bei jeder Änderung am Gerät (es ist jetzt erforderlich, wenn Sie ein Gerät ändern, um den Dämon manuell neu zu starten)
 

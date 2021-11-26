@@ -1,10 +1,10 @@
-# ipx800v5 Plugin
+# GCE_IPX800V5 Plugin
 
 Mit diesem Plugin können Sie eine IPX 800 v4 verwalten
 
 # Plugin Konfiguration
 
-Nach dem Herunterladen des Plugins müssen Sie es nur aktivieren und die für Sie geltenden Kontrollkästchen für Anforderungen an ipx800v5 aktivieren (Beispiel: Überprüfen Sie X-Dimmer, wenn Sie einen X-Dimmer haben). Sie können auch die Häufigkeit der Anforderungen auswählen, um die Belastung von ipx800v5 zu verringern
+Nach dem Herunterladen des Plugins müssen Sie es nur aktivieren und die für Sie geltenden Kontrollkästchen für Anforderungen an GCE_IPX800V5 aktivieren (Beispiel: Überprüfen Sie X-Dimmer, wenn Sie einen X-Dimmer haben). Sie können auch die Häufigkeit der Anforderungen auswählen, um die Belastung von GCE_IPX800V5 zu verringern
 
 > **Wichtig**
 >
@@ -12,7 +12,7 @@ Nach dem Herunterladen des Plugins müssen Sie es nur aktivieren und die für Si
 
 > **Wichtig**
 >
-> Um die Belastung zu verringern, wird empfohlen, ALLE Typanforderungen zu deaktivieren und nur die APIs zu überprüfen, die Sie betreffen (Details finden Sie in der API-Dokumentation für ipx800v5)
+> Um die Belastung zu verringern, wird empfohlen, ALLE Typanforderungen zu deaktivieren und nur die APIs zu überprüfen, die Sie betreffen (Details finden Sie in der API-Dokumentation für GCE_IPX800V5)
 
 > **Notiz**
 >
@@ -102,10 +102,10 @@ Um zu vermeiden, dass Informationen in Jeedom aktualisiert werden oder zu häufi
 
 Hier ist die Syntax, die bei einem IPX-Push verwendet werden soll :
 
-- Aktualisierung aller digitalen Eingänge : ``/core/api/jeeApi.php?type=ipx800v5&apikey=XXX&typeData=allD&data=$D``
-- Aktualisierung aller Relais : ``/core/api/jeeApi.php?type=ipx800v5&apikey=XXX&typeData=allR&data=$R``
-- Aktualisierung aller virtuellen Ausgänge : ``/core/api/jeeApi.php?type=ipx800v5&apikey=XXX&typeData=allVO&data=$VO``
-- Aktualisieren einer einzelnen Variablen : ``/core/api/jeeApi.php?type=ipx800v5&apikey=XXX&typeData=A&data=$B`` mit ``A`` Wer nimmt die Werte ``D``, ``R`` oder ``VO`` und ``B`` Hiermit wird die Referenz des Werts verwendet, der auf dem IPX gesendet werden soll (z. B.) ``D1`` oder ``VO1`` oder ``R1``…)
+- Aktualisierung aller digitalen Eingänge : ``/core/api/jeeApi.php?type=GCE_IPX800V5&apikey=XXX&typeData=allD&data=$D``
+- Aktualisierung aller Relais : ``/core/api/jeeApi.php?type=GCE_IPX800V5&apikey=XXX&typeData=allR&data=$R``
+- Aktualisierung aller virtuellen Ausgänge : ``/core/api/jeeApi.php?type=GCE_IPX800V5&apikey=XXX&typeData=allVO&data=$VO``
+- Aktualisieren einer einzelnen Variablen : ``/core/api/jeeApi.php?type=GCE_IPX800V5&apikey=XXX&typeData=A&data=$B`` mit ``A`` Wer nimmt die Werte ``D``, ``R`` oder ``VO`` und ``B`` Hiermit wird die Referenz des Werts verwendet, der auf dem IPX gesendet werden soll (z. B.) ``D1`` oder ``VO1`` oder ``R1``…)
 
 Dann erhalten Sie eine Szene nach Typ (Eintrag, Relais ...) mit :
 

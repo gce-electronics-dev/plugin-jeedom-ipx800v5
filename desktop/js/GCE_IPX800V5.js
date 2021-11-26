@@ -42,11 +42,11 @@ $('#table_cmd').on('change','.cmdAttr[data-l1key=configuration][data-l2key=infoT
 
 $('.cmdAction[data-action=importFromTemplate]').on('click',function(){
   $('#md_modal').dialog({title: "{{Template commande IPX800}}"});
-  $("#md_modal").load('index.php?v=d&plugin=ipx800v5&modal=cmd.template&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+  $("#md_modal").load('index.php?v=d&plugin=GCE_IPX800V5&modal=cmd.template&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });
 
 $('#bt_downloadIpxBackup').on('click',function(){
-  window.open('core/php/downloadFile.php?pathfile=plugins/ipx800v5/data/'+$('.eqLogicAttr[data-l2key=ip]').value()+'.gce', "_blank", null);
+  window.open('core/php/downloadFile.php?pathfile=plugins/GCE_IPX800V5/data/'+$('.eqLogicAttr[data-l2key=ip]').value()+'.gce', "_blank", null);
 });
 
 function addCmdToTable(_cmd) {

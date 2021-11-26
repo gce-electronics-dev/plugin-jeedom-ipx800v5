@@ -31,7 +31,7 @@
 
 # 06/13/2019
 
-- Adición de un sistema de respaldo diario automático para ipx800v5
+- Adición de un sistema de respaldo diario automático para GCE_IPX800V5
 - Soporte PWM en un solo color
 - Supresión del reinicio del demonio en cada cambio en el equipo (ahora es necesario cuando modifica un equipo para reiniciar el demonio manualmente)
 

@@ -6,10 +6,10 @@ $eqLogic = eqLogic::byId(init('eqLogic_id'));
 if (!is_object($eqLogic)) {
 	throw new Exception('{{Equipement introuvable}} : ' . init('eqLogic_id'));
 }
-if ($eqLogic->getEqType_name() != 'ipx800v5') {
-	throw new Exception('{{Equipement pas de type ipx800v5}}');
+if ($eqLogic->getEqType_name() != 'GCE_IPX800V5') {
+	throw new Exception('{{Equipement pas de type GCE_IPX800V5}}');
 }
-$templates = ipx800v5::listCmdTemplate();
+$templates = GCE_IPX800V5::listCmdTemplate();
 ?>
 <div style="display: none;" id="md_cmdTemplateAlert"></div>
 <form class="form-horizontal">
@@ -81,7 +81,7 @@ $('#bt_cmdTemplateCreate').on('click',function(){
 	config.template = $('.cmdTemplateAttr[data-l1key=templateName]').value();
 	$.ajax({
 		type: "POST",
-		url: "plugins/ipx800v5/core/ajax/ipx800v5.ajax.php",
+		url: "plugins/GCE_IPX800V5/core/ajax/GCE_IPX800V5.ajax.php",
 		data: {
 			action: "createFromTemplate",
 			eqLogic_id : <?php echo init('eqLogic_id'); ?>,

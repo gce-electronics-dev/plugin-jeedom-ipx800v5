@@ -31,7 +31,7 @@
 
 # 06/13/2019
 
-- Addition of an automatic daily backup system for ipx800v5
+- Addition of an automatic daily backup system for GCE_IPX800V5
 - PWM support in single color only
 - Suppression of the restarting of the daemon at each change on the equipment (it is now necessary when you modify an equipment to restart the daemon manually)
 
