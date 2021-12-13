@@ -381,7 +381,8 @@ class GCE_IPX800V5 extends eqLogic {
 						$urlGet = 'http://' . $this->getConfiguration('ip') .'/api/core/ana/'. $id . '?ApiKey=' . $this->getConfiguration('apikey');
 					}
 					$dispName = $this->get($urlGet, 0)["name"];
-
+					if ($subType == "info") { $dispName .= "_state"; }
+					
 					$cmd = $this->getCmd(null, $name.'_'.$i);
 					if (!is_object($cmd)) {
 						$cmd = new GCE_IPX800V5Cmd();
