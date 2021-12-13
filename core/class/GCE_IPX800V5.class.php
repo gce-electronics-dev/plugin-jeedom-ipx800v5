@@ -173,10 +173,11 @@ class GCE_IPX800V5 extends eqLogic {
 		/***/
 
 		/* XDIMMER */
-		'XDIMMER_on' => 	   array('XDIMMER relay Command', 			6, 'action', 	'other',		"XDIMMER",  '/api/ebx/xdimmer',    'ioOnAll_id',  'ioOn_id',	      				'IO',   4),
-		'XDIMMER_a_cmd' =>   array('XDIMMER Analog Command', 	  	6, 'action', 	'slider',		"XDIMMER",  '/api/ebx/xdimmer',    '',            'anaCommand_id',					'Ana',  4),
-		'XDIMMER_a_state' => array('XDIMMER Analog State', 		    6, 'info', 	  'numeric',	"XDIMMER",  '/api/ebx/xdimmer',    '',            'anaPosition_id',	    		'Ana',  4),
-		'XDIMMER_speed' =>   array('XDIMMER Speed Transition', 		6, 'action', 	'slider',		"XDIMMER",  '/api/ebx/xdimmer',    '',            'anaSpeedTransition_id',	'Ana',  1),
+		'XDIMMER_on_cmd' =>   array('XDIMMER relay Command', 			  6, 'action', 	'other',		"XDIMMER",  '/api/ebx/xdimmer',    'ioOnAll_id',  'ioOn_id',	      				'IO',   4),
+		'XDIMMER_on_state' => array('XDIMMER relay State', 			    6, 'info', 	  'binary',		"XDIMMER",  '/api/ebx/xdimmer',    'ioOnAll_id',  'ioOn_id',	      				'IO',   4),
+		'XDIMMER_a_cmd' =>   	array('XDIMMER Analog Command', 	  	6, 'action', 	'slider',		"XDIMMER",  '/api/ebx/xdimmer',    '',            'anaCommand_id',					'Ana',  4),
+		'XDIMMER_a_state' => 	array('XDIMMER Analog State', 		    6, 'info', 	  'numeric',	"XDIMMER",  '/api/ebx/xdimmer',    '',            'anaPosition_id',	    		'Ana',  4),
+		'XDIMMER_speed' =>  	array('XDIMMER Speed Transition', 		6, 'action', 	'slider',		"XDIMMER",  '/api/ebx/xdimmer',    '',            'anaSpeedTransition_id',	'Ana',  1),
 		/***/
 
 		/* XDMX
