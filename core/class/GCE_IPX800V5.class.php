@@ -448,7 +448,7 @@ class GCE_IPX800V5 extends eqLogic {
 
 								$cmd->setConfiguration('actionArgument', $cmdType);
 								if ($type == "action") {
-									if ($cmdType == "IO") $cmd->setConfiguration('actionCmd'.$cmdType , "toggle");
+									if ($cmdType == "IO") $cmd->setConfiguration('actionTypeCmd'.$cmdType , "toggle");
 									$cmd->setConfiguration('actionParameter'.$cmdType , $id);
 								} else {
 									$cmd->setConfiguration('infoType', $cmdType);
@@ -486,7 +486,7 @@ class GCE_IPX800V5 extends eqLogic {
 
 							$cmd->setConfiguration('actionArgument', $cmdType);
 							if ($type == "action") {
-								if ($cmdType == "IO") $cmd->setConfiguration('actionCmd'.$cmdType , "toggle");
+								if ($cmdType == "IO") $cmd->setConfiguration('actionTypeCmd'.$cmdType , "toggle");
 								$cmd->setConfiguration('actionParameter'.$cmdType , $id);
 							} else {
 								$cmd->setConfiguration('infoType', $cmdType);
@@ -647,12 +647,12 @@ class GCE_IPX800V5Cmd extends cmd {
 
 		/* IO Command */
 		if ($act == "IO") { //si c est un IO Cmd
-			$actCmd = $this->getConfiguration('actionCmd'.$act);
+			$actCmd = $this->getConfiguration('actionTypeCmd'.$act);
 			$req;
 			switch ($actCmd) {
-				case 'toggle': $req = json_encode(array('toggle' => true)) break;
-				case 'setOn': $req = json_encode(array('on' => true)) break;
-				case 'setOff': $req = json_encode(array('on' => false)) break;
+				case 'toggle': $req = json_encode(array('toggle' => true)); break;
+				case 'setOn': $req = json_encode(array('on' => true)); break;
+				case 'setOff': $req = json_encode(array('on' => false)); break;
 			}
 			$urlPut = 'http://' . $eqLogic->getConfiguration('ip') . '/api/core/io/'.$id.'?ApiKey=' . $eqLogic->getConfiguration('apikey');
 			$request_http = $eqLogic->put($urlPut, $req);
