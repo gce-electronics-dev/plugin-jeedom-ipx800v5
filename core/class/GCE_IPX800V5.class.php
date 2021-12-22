@@ -54,6 +54,10 @@ class GCE_IPX800V5 extends eqLogic {
 	const PRESET_IPX = array('R_cmd', 'R_state', 'Din_state', 'Ain', 'Oout_cmd', 'Cin_cmd', 'Cin_state');
 	/***/
 
+	/* Preset Tab IPX v4 */
+	const PRESET_IPXV4 = array('V4_R_cmd', 'V4_R_state', 'V4_Din_state', 'V4_Ain_state');
+	/***/
+
 	/* Preset Tab OBJ */
 	const PRESET_OBJ = array(
 		'Pwatch' 	=> array('Ping Watchdog' ,  32,  1,  0, ''),
@@ -91,6 +95,15 @@ class GCE_IPX800V5 extends eqLogic {
 		'Oout_cmd' => 		array('Sortie Optoisolé State', 	4, 'info', 		'binary',		"Cout", '/api/system/ipx', 'ioCollInput', 		  'ioCollInput_id',				'IO'),
 		'Cin_cmd' => 			array('Open collecteur Command',	4, 'action', 	'other',		"Cin",  '/api/system/ipx', 'ioCollOutput', 		  'ioCollOutput_id',			'IO'),
 		'Cin_state' => 		array('Open collecteur State', 		4, 'info', 		'binary',		"Cin",  '/api/system/ipx', 'ioCollOutputState', 'ioCollOutputState_id',	'IO')
+	);
+	/***/
+
+	/* Type Data IPX800 V4 */
+	const TYPE_DATA_IPXV4 = array(
+		'V4_R_cmd' => 	 		  array('V4 Relay command', 	  8, 'action', 	'other',		"IPX800V4", '/api/plugin/ipx800v4',   '',  'ioRelays_id',	    'IO'),
+		'V4_R_state' => 		  array('V4 Relay state', 			8, 'info', 	  'binary',		"IPX800V4", '/api/plugin/ipx800v4',   '',  'ioRelays_id',	    'IO'),
+		'V4_Din_state' => 		array('V4 Digital input', 		8, 'info', 	  'binary',	 	"IPX800V4", '/api/plugin/ipx800v4',   '',  'ioDInput_id',	    'IO'),
+		'V4_Ain_state' => 	 	array('V4 Analog input', 			4, 'info', 	  'numeric',	"IPX800V4", '/api/plugin/ipx800v4',   '',  'anaInput_id',	    'Ana')
 	);
 	/***/
 
@@ -414,19 +427,82 @@ class GCE_IPX800V5 extends eqLogic {
 	/***/
 
 	/*
+	* Name: presetCmd_IPX
+	* Descr: create or delete command from the table config
+	*/
+	public function presetCmd_IPXV4($name, $nb, $type, $subType, $action, $api, $key, $key_id, $cmdType) {
+		for ($i=0; $i < 4; $i++) {
+			if ($this->getConfiguration("V4".$i) == 1) {
+				$urlGet = 'http://' . $this->getConfiguration('ip') . $api.'?ApiKey=' . $this->getConfiguration('apikey');
+				$obj = $this->get($urlGet, 0);
+
+				if ($this->getConfiguration("V4".$i.$name) == 1) {
+					for ($j=1; $j <= $nb; $j++) {
+						$id = $obj[$i][$key_id][$j - 1];
+						if ($id) {
+							if ($cmdType == "IO") {
+								$urlGet = 'http://' . $this->getConfiguration('ip') .'/api/core/io/'. $id . '?ApiKey=' . $this->getConfiguration('apikey');
+							} else {
+								$urlGet = 'http://' . $this->getConfiguration('ip') .'/api/core/ana/'. $id . '?ApiKey=' . $this->getConfiguration('apikey');
+							}
+							$dispName = $this->get($urlGet, 0)["name"];
+							if ($type == "info") { $dispName .= "_state"; }
+							
+							$cmd = $this->getCmd(null, $name.'_'.$i.'_'.$j);
+							if (!is_object($cmd)) {
+								$cmd = new GCE_IPX800V5Cmd();
+							}
+							$cmd->setName(__($dispName.'_'.$i.'_'.$j, __FILE__));
+							$cmd->setEqLogic_id($this->getId());
+							$cmd->setLogicalId($name.'_'.$i.'_'.$j);
+							$cmd->setConfiguration('actionArgument', $cmdType);
+							if ($type == "action") {
+								$cmd->setConfiguration('actionParameter'.$cmdType , $id);
+							} else {
+								$cmd->setConfiguration('infoType', $cmdType);
+								$cmd->setConfiguration('infoParameter'.$cmdType , $id);
+							}
+							$cmd->setType($type);
+							$cmd->setSubType($subType);
+							$cmd->save();
+						} else {
+								$cmd = $this->getCmd(null, $name.'_'.$i.'_'.$j);
+								if (is_object($cmd)) $cmd->remove();
+						}
+					}
+				} else {
+					for ($j=1; $j <= $nb; $j++) {
+						$cmd = $this->getCmd(null, $name.'_'.$i.'_'.$j);
+						if (is_object($cmd)) $cmd->remove();
+					}
+				}
+			} else {
+				for ($j=1; $j <= $nb; $j++) {
+					$cmd = $this->getCmd(null, $name.'_'.$i.'_'.$j);
+					if (is_object($cmd)) $cmd->remove();
+				}
+			}
+		}
+	}
+	/***/
+
+	/*
 	* Name: presetCmd_EXT
 	* Descr: create or delete command from the table config
 	*/
 	public function presetCmd_EXT($name, $nb, $type, $subType, $action, $api, $key_All, $key_id, $cmdType, $canal) {
+
 		if ($this->getConfiguration($action) == 1) {
 			$urlGet = 'http://' . $this->getConfiguration('ip') . $api.'?ApiKey=' . $this->getConfiguration('apikey');
 			$obj = $this->get($urlGet, 0);
+
 			for ($i=0; $i < $nb; $i++) { //pour chaque instance de l'extension
 				if ($this->getConfiguration($action . $i) == 1) { //si elle est sélectionner
 					for ($j=0; $j < $canal; $j++) { //pour chaque canaux de l'extension
 						if ($this->getConfiguration('Canal' . $action . $i . '_' . $j) == 1 || $canal == 1) { //si le canal est selectionné
 							if ($canal > 1) $id = $obj[$i][$key_id][$j];
 							else $id = $obj[$i][$key_id];
+
 							if ($id) {
 								if ($cmdType == "IO") {
 									$urlGet = 'http://' . $this->getConfiguration('ip') .'/api/core/io/'. $id . '?ApiKey=' . $this->getConfiguration('apikey');
@@ -553,6 +629,10 @@ class GCE_IPX800V5 extends eqLogic {
 
 		foreach (GCE_IPX800V5::TYPE_DATA_IPX as $key => $value) {
 			$this->presetCmd_IPX($key, $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8]);
+		}
+
+		foreach (GCE_IPX800V5::TYPE_DATA_IPXV4 as $key => $value) {
+			$this->presetCmd_IPXV4($key, $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8]);
 		}
 
 		foreach (GCE_IPX800V5::TYPE_DATA_EXT as $key => $value) {
