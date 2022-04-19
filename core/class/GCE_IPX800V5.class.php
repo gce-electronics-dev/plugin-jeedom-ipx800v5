@@ -307,6 +307,7 @@ class GCE_IPX800V5 extends eqLogic {
 		if (self::$_eqLogics == null) {
 			self::$_eqLogics = self::byType('GCE_IPX800V5',true);
 		}
+		log::add('GCE_IPX800V5', 'debug', 'PULL');
 		$cache = array();
 		foreach (self::$_eqLogics as &$GCE_IPX800V5) { //pour chaque Equipement IPX800 V5
 			$_eqLogic_id = $GCE_IPX800V5->getId();
@@ -326,8 +327,9 @@ class GCE_IPX800V5 extends eqLogic {
 				} else {
 					$id = $cmd->getConfiguration('actionParameter'.$arg);
 				}
-				log::add('GCE_IPX800V5', 'debug', "arg: " . $arg . " id: " . $id);
+
 				if ($id != '') { // si la cmd a un ID en param
+					log::add('GCE_IPX800V5', 'debug', 'arg: ' . $arg . ' id: ' . $id);
 					if ($cmd->getType() == "info") {
 						if ($arg == "IO") {	//si c'est un IO
 							array_push($refreshIo, array($cmd, $id)); //ajouter la cmd et l'id au tab de refresh IO
