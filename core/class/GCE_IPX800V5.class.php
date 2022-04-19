@@ -320,13 +320,16 @@ class GCE_IPX800V5 extends eqLogic {
 
 			for ($i=0; $i < sizeof($cmds); $i++) { //pour chaque cmd de l'equipement
 				$cmd = $cmds[$i];
-				$arg = $cmd->getConfiguration('actionArgument');
+
+				if ($cmd->getConfiguration('infoType')) $arg = $cmd->getConfiguration('infoType');
+				else $arg = $cmd->getConfiguration('actionArgument');
 				if ($cmd->getType() == "info") {
 					$id = $cmd->getConfiguration('infoParameter'.$arg);
 				} else {
 					$id = $cmd->getConfiguration('actionParameter'.$arg);
 				}
 				if ($id != '') { // si la cmd a un ID en param
+					//log::add('GCE_IPX800V5', 'debug', 'Command: '. $cmd->getName() . ' arg: ' . $arg . ' id: ' . $id );
 					if ($cmd->getType() == "info") {
 						if ($arg == "IO") {	//si c'est un IO
 							array_push($refreshIo, array($cmd, $id)); //ajouter la cmd et l'id au tab de refresh IO
@@ -447,7 +450,7 @@ class GCE_IPX800V5 extends eqLogic {
 							}
 							$dispName = $this->get($urlGet, 0)["name"];
 							if ($type == "info") { $dispName .= "_state"; }
-							
+
 							$cmd = $this->getCmd(null, $name.'_'.$i.'_'.$j);
 							if (!is_object($cmd)) {
 								$cmd = new GCE_IPX800V5Cmd();
