@@ -322,6 +322,7 @@ class GCE_IPX800V5 extends eqLogic {
 			for ($i=0; $i < sizeof($cmds); $i++) { //pour chaque cmd de l'equipement
 				$cmd = $cmds[$i];
 				$arg = $cmd->getConfiguration('actionArgument');
+				if ($arg == '') $cmd->getConfiguration('infoType');
 				if ($cmd->getType() == "info") {
 					$id = $cmd->getConfiguration('infoParameter'.$arg);
 				} else {
