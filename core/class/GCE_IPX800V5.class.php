@@ -367,6 +367,7 @@ class GCE_IPX800V5 extends eqLogic {
 				for ($i=0; $i < sizeof($refreshAna); $i++) { // pour chaque Ana à refresh
 					for ($j=0; $j < sizeof($anas); $j++) { // pour chaque Ana de Ana collection
 						if ($refreshAna[$i][1] == $anas[$j]["_id"]) { // si les Id correspondent
+							log::add('GCE_IPX800V5', 'debug', ' id: ' . $id . ' value: ' . $anas[$j]["value"]);
 							$GCE_IPX800V5->checkAndUpdateCmd($refreshAna[$i][0], $anas[$j]["value"], false); //update cmd value
 							break;
 						}
