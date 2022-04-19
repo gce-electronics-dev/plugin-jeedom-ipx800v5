@@ -327,9 +327,9 @@ class GCE_IPX800V5 extends eqLogic {
 				} else {
 					$id = $cmd->getConfiguration('actionParameter'.$arg);
 				}
-
+				log::add('GCE_IPX800V5', 'debug', 'Command: '. $cmd->getName(). ' type: '. $cmd->getType());
 				if ($id != '') { // si la cmd a un ID en param
-					log::add('GCE_IPX800V5', 'debug', 'Command: '. $cmd->getName() . ' arg: ' . $arg . ' id: ' . $id . ' type: '. $cmd->getType());
+					log::add('GCE_IPX800V5', 'debug', 'Command: '. $cmd->getName() . 'arg: ' . $arg . ' id: ' . $id );
 					if ($cmd->getType() == "info") {
 						if ($arg == "IO") {	//si c'est un IO
 							array_push($refreshIo, array($cmd, $id)); //ajouter la cmd et l'id au tab de refresh IO
