@@ -329,7 +329,7 @@ class GCE_IPX800V5 extends eqLogic {
 				}
 
 				if ($id != '') { // si la cmd a un ID en param
-					log::add('GCE_IPX800V5', 'debug', 'arg: ' . $arg . ' id: ' . $id);
+					log::add('GCE_IPX800V5', 'debug', 'arg: ' . $arg . ' id: ' . $id . ' type: '. $cmd->getType());
 					if ($cmd->getType() == "info") {
 						if ($arg == "IO") {	//si c'est un IO
 							array_push($refreshIo, array($cmd, $id)); //ajouter la cmd et l'id au tab de refresh IO
@@ -365,6 +365,7 @@ class GCE_IPX800V5 extends eqLogic {
 				}
 				$anas = $cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"];
 				for ($i=0; $i < sizeof($refreshAna); $i++) { // pour chaque Ana à refresh
+					log::add('GCE_IPX800V5', 'debug', 'Ana to refres id: ' . $refreshAna[$i][1]);
 					for ($j=0; $j < sizeof($anas); $j++) { // pour chaque Ana de Ana collection
 						if ($refreshAna[$i][1] == $anas[$j]["_id"]) { // si les Id correspondent
 							log::add('GCE_IPX800V5', 'debug', ' id: ' . $id . ' value: ' . $anas[$j]["value"]);
