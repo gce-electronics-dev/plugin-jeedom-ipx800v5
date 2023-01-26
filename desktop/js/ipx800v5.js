@@ -28,6 +28,9 @@ $('#table_cmd').on('change','.cmdAttr[data-l1key=configuration][data-l2key=actio
   $(this).closest('.cmd').find('.actionParameter').hide();
   $(this).closest('.cmd').find('.actionParameter.'+$(this).value()).show();
 
+  $(this).closest('.cmd').find('.actionTypeCmd').hide();
+  $(this).closest('.cmd').find('.actionTypeCmd.'+$(this).value()).show();
+
   $(this).closest('.cmd').find('.actionOption').hide();
   $(this).closest('.cmd').find('.actionOption.'+$(this).value()).show();
 });
@@ -42,11 +45,11 @@ $('#table_cmd').on('change','.cmdAttr[data-l1key=configuration][data-l2key=infoT
 
 $('.cmdAction[data-action=importFromTemplate]').on('click',function(){
   $('#md_modal').dialog({title: "{{Template commande IPX800}}"});
-  $("#md_modal").load('index.php?v=d&plugin=ipx800v5&modal=cmd.template&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+  $("#md_modal").load('index.php?v=d&plugin=GCE_IPX800V5&modal=cmd.template&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });
 
 $('#bt_downloadIpxBackup').on('click',function(){
-  window.open('core/php/downloadFile.php?pathfile=plugins/ipx800v5/data/'+$('.eqLogicAttr[data-l2key=ip]').value()+'.gce', "_blank", null);
+  window.open('core/php/downloadFile.php?pathfile=plugins/GCE_IPX800V5/data/'+$('.eqLogicAttr[data-l2key=ip]').value()+'.gce', "_blank", null);
 });
 
 function addCmdToTable(_cmd) {
@@ -104,6 +107,16 @@ function addCmdToTable(_cmd) {
         tr += '</div>';
         /***/
 
+        /* Action Command */
+        tr += '<div class="col-xs-6">';
+          tr += '<select class="cmdAttr form-control actionTypeCmd IO input-sm" data-l1key="configuration" data-l2key="actionTypeCmdIO">';
+            tr += '<option value="toggle" class="actionTypeCmdIO">{{Toggle}}</option>';
+            tr += '<option value="setOn"  class="actionTypeCmdIO">{{Set On}}</option>';
+            tr += '<option value="setOff" class="actionTypeCmdIO">{{Set Off}}</option>';
+          tr += '</select>';
+        tr += '</div>';
+        /***/
+
         /* Action Option */
         tr += '<div class="col-xs-6">';
           tr += '<input class="cmdAttr form-control actionOption Ana input-sm" data-l1key="configuration" data-l2key="actionOptionAna" placeholder="{{Valeur}}" style="display:none;" />';
@@ -145,6 +158,9 @@ function addCmdToTable(_cmd) {
   tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked/>{{Afficher}}</label></span> ';
   tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
   tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="invertBinary"/>{{Inverser}}</label></span> ';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<span class="cmdAttr" data-l1key="htmlstate"></span>'; 
   tr += '</td>';
   tr += '<td>';
   if (is_numeric(_cmd.id)) {
