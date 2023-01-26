@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$plugin = plugin::byId('ipx800v5');
+$plugin = plugin::byId('GCE_IPX800V5');
 sendVarToJS('eqType', $plugin->getId());
 $eqLogics = eqLogic::byType($plugin->getId());
 ?>
@@ -107,22 +107,48 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<input type="password" autocomplete="new-password"  class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="apikey"/>
 							</div>
 						</div>
+
+						<div class="form-group">
 						<label class="col-sm-2 control-label">{{Commandes IPX par défaut}}</label>
 						<div class="col-sm-9">
 							<?php
-							foreach (ipx800v5::PRESET_IPX as $value) {
+								foreach (GCE_IPX800V5::PRESET_IPX as $value) {
+									echo '<label class="checkbox-inline">';
+									echo '<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="' . $value . '" />' . GCE_IPX800V5::TYPE_DATA_IPX[$value][0];
+									echo '</label>';
+								}
+							?>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label">{{Commandes IPX800 V4 par défaut}}</label>
+						<div class="col-sm-9">
+							<?php
+							for ($i=0; $i < 4; $i++) {
+								echo '<div class="col-sm-12">';
 								echo '<label class="checkbox-inline">';
-								echo '<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="' . $value . '" />' . ipx800v5::TYPE_DATA_IPX[$value][0];
+								echo '<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="V4'. $i . '" />IPX800 V4 '. $i;
 								echo '</label>';
+								echo '</div>';
+								echo '<div class="col-sm-12">';
+								foreach (GCE_IPX800V5::PRESET_IPXV4 as $value) {
+									echo '<label class="checkbox-inline">';
+									echo '<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="V4'. $i . $value . '" />' . GCE_IPX800V5::TYPE_DATA_IPXV4[$value][0];
+									echo '</label>';
+								}
+								echo '</div>';
 							}
 							?>
 						</div>
+						</div>
 
+						<div class="form-group">
 						<label class="col-sm-2 control-label">{{Commandes Objets par défaut}}</label>
 						<div class="col-sm-10">:</div>
 						<div>
 							<?php
-							foreach (ipx800v5::PRESET_OBJ as $key => $value) {
+							foreach (GCE_IPX800V5::PRESET_OBJ as $key => $value) {
 								echo '<div class="col-sm-2"></div>';
 								echo '<div class="col-sm-9">';
 								echo '<label class="checkbox-inline">';
@@ -160,12 +186,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							}
 							?>
 						</div>
+						</div>
 
+						<div class="form-group">
 						<label class="col-sm-2 control-label">{{Commandes Extensions par défaut}}</label>
 						<div class="col-sm-10">:</div>
 						<div>
 							<?php
-							foreach (ipx800v5::PRESET_EXT as $key => $value) {
+							foreach (GCE_IPX800V5::PRESET_EXT as $key => $value) {
 								echo '<div class="col-sm-2"></div>';
 								echo '<div class="col-sm-9">';
 								echo '<label class="checkbox-inline">';
@@ -203,6 +231,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							}
 							?>
 						</div>
+					</div>
 					</fieldset>
 				</form>
 			</div>
@@ -220,6 +249,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<th style="width:50px;">{{Type}}</th>
 							<th>{{Configuration}}</th>
 							<th style="width:300px;">{{Paramètres}}</th>
+                            <th>{{Etat}}</th>
 							<th style="width:125px;">{{Action}}</th>
 						</tr>
 					</thead>
@@ -231,5 +261,5 @@ $eqLogics = eqLogic::byType($plugin->getId());
 	</div>
 </div>
 
-<?php include_file('desktop', 'ipx800v5', 'js', 'ipx800v5');?>
+<?php include_file('desktop', 'GCE_IPX800V5', 'js', 'GCE_IPX800V5');?>
 <?php include_file('core', 'plugin.template', 'js');?>
