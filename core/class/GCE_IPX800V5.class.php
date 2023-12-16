@@ -307,7 +307,7 @@ class GCE_IPX800V5 extends eqLogic {
 		if (self::$_eqLogics == null) {
 			self::$_eqLogics = self::byType('GCE_IPX800V5',true);
 		}else{
-          self::$_eqLogics = array(slef::byId($_eqLogic_id));
+          self::$_eqLogics = array(self::byId($_eqLogic_id));
         }
 		$cache = array();
 		foreach (self::$_eqLogics as $GCE_IPX800V5) {
