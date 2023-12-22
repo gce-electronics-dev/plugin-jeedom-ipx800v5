@@ -303,76 +303,46 @@ class GCE_IPX800V5 extends eqLogic {
 	* Name: pull
 	* Descr: polling on Ipx
 	*/
-	public static function pull($_eqLogic_id = null, $_cache = null) {
+	public static function pull($_eqLogic_id = null) {
 		if (self::$_eqLogics == null) {
 			self::$_eqLogics = self::byType('GCE_IPX800V5',true);
-		}
+		}else{
+          self::$_eqLogics = array(slef::byId($_eqLogic_id));
+        }
 		$cache = array();
-		foreach (self::$_eqLogics as &$GCE_IPX800V5) { //pour chaque Equipement IPX800 V5
-			$_eqLogic_id = $GCE_IPX800V5->getId();
-
-			$cmds = cmd::byEqLogicId($_eqLogic_id); //get all cmd de l'equipement
-			$refreshIo  = array();
-			$refreshAna = array();
-
-			$io = 0;
-			$ana = 0;
-
-			for ($i=0; $i < sizeof($cmds); $i++) { //pour chaque cmd de l'equipement
-				$cmd = $cmds[$i];
-
-				if ($cmd->getConfiguration('infoType')) $arg = $cmd->getConfiguration('infoType');
-				else $arg = $cmd->getConfiguration('actionArgument');
-				if ($cmd->getType() == "info") {
-					$id = $cmd->getConfiguration('infoParameter'.$arg);
-				} else {
-					$id = $cmd->getConfiguration('actionParameter'.$arg);
-				}
-				if ($id != '') { // si la cmd a un ID en param
-					//log::add('GCE_IPX800V5', 'debug', 'Command: '. $cmd->getName() . ' arg: ' . $arg . ' id: ' . $id );
-					if ($cmd->getType() == "info") {
-						if ($arg == "IO") {	//si c'est un IO
-							array_push($refreshIo, array($cmd, $id)); //ajouter la cmd et l'id au tab de refresh IO
-							$io = $io + 1;
-						}
-						if ($arg == "Ana") { //si c'est une Ana
-							array_push($refreshAna, array($cmd, $id)); //ajouter la cmd et l'id au tab de refresh Ana
-							$ana = $ana + 1;
-						}
-					}
-				}
-			}
-			if ($io > 0) { //si on a au moins une IO a refresh
-				if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')]["io"])) { //si on a pas encore GET io collection
-					$urlGet = 'http://' . $GCE_IPX800V5->getConfiguration('ip') . '/api/core/io?ApiKey=' . $GCE_IPX800V5->getConfiguration('apikey');
-					$cache[$GCE_IPX800V5->getConfiguration('ip')]["io"] = GCE_IPX800V5::get($urlGet, 1); //GET Io collection
-				}
-				$ios = $cache[$GCE_IPX800V5->getConfiguration('ip')]["io"];
-				for ($i=0; $i < sizeof($refreshIo); $i++) { // pour chaque IO à refresh
-					for ($j=0; $j < sizeof($ios); $j++) { // pour chaque IO de Io collection
-						if ($refreshIo[$i][1] == $ios[$j]["_id"]) { // si les Id correspondent
-							$GCE_IPX800V5->checkAndUpdateCmd($refreshIo[$i][0], $ios[$j]["on"], false); //update cmd value
-							break;
-						}
-					}
-				}
-				usleep(config::byKey('api::frequency', 'GCE_IPX800V5', 1) * 1000000 / 2); //Sleep 1/2 frequency pour ne pas faire
-			}
-			if ($ana > 0) { //si on a au moins une Ana a refresh
-				if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"])) { //si on a pas encore GET ana collection
-					$urlGet = 'http://' . $GCE_IPX800V5->getConfiguration('ip') . '/api/core/ana?ApiKey=' . $GCE_IPX800V5->getConfiguration('apikey');
-					$cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"] = GCE_IPX800V5::get($urlGet, 1); //GET Ana collection
-				}
-				$anas = $cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"];
-				for ($i=0; $i < sizeof($refreshAna); $i++) { // pour chaque Ana à refresh
-					for ($j=0; $j < sizeof($anas); $j++) { // pour chaque Ana de Ana collection
-						if ($refreshAna[$i][1] == $anas[$j]["_id"]) { // si les Id correspondent
-							$GCE_IPX800V5->checkAndUpdateCmd($refreshAna[$i][0], $anas[$j]["value"], false); //update cmd value
-							break;
-						}
-					}
-				}
-				usleep(config::byKey('api::frequency', 'GCE_IPX800V5', 1) * 1000000 / 2);
+		foreach (self::$_eqLogics as $GCE_IPX800V5) {
+            foreach($GCE_IPX800V5->getCmd('info') as $cmd){
+                $arg = ($cmd->getConfiguration('infoType')) ? $cmd->getConfiguration('infoType') : $cmd->getConfiguration('actionArgument');
+                $id = $cmd->getConfiguration('infoParameter'.$arg);
+                if($id == ''){
+                 	continue; 
+                }
+                switch($arg){
+                    case 'IO':
+                    if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')]["io"])) {
+                      $urlGet = 'http://' . $GCE_IPX800V5->getConfiguration('ip') . '/api/core/io?ApiKey=' . $GCE_IPX800V5->getConfiguration('apikey');
+                      $cache[$GCE_IPX800V5->getConfiguration('ip')]["io"] = GCE_IPX800V5::get($urlGet, 1); 
+                    }
+                    foreach($cache[$GCE_IPX800V5->getConfiguration('ip')]["io"] as $io){
+                      if ($id == $io["_id"]) { 
+                        $GCE_IPX800V5->checkAndUpdateCmd($cmd, $io["on"], false);
+                        break;
+                      }
+                    }
+                    break;
+                    case 'Ana':
+                    if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"])) {
+                        $urlGet = 'http://' . $GCE_IPX800V5->getConfiguration('ip') . '/api/core/ana?ApiKey=' . $GCE_IPX800V5->getConfiguration('apikey');
+                        $cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"] = GCE_IPX800V5::get($urlGet, 1);
+                    }
+                    foreach($cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"] as $ana){
+                      if ($id == $ana["_id"]) { 
+                        $GCE_IPX800V5->checkAndUpdateCmd($cmd, $ana["value"], false); 
+                        break;
+                      }
+                    }
+                    break;
+                }
 			}
 		}
 	}
@@ -758,7 +728,7 @@ class GCE_IPX800V5Cmd extends cmd {
 			return;
 		}
 		/***/
-
+        GCE_IPX800V5::pull($this->getEqLogic_Id());
 		usleep(10000);
 	}
 
