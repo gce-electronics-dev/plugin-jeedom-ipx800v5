@@ -28,6 +28,9 @@ $('#table_cmd').on('change','.cmdAttr[data-l1key=configuration][data-l2key=actio
   $(this).closest('.cmd').find('.actionParameter').hide();
   $(this).closest('.cmd').find('.actionParameter.'+$(this).value()).show();
 
+  $(this).closest('.cmd').find('.actionTypeCmd').hide();
+  $(this).closest('.cmd').find('.actionTypeCmd.'+$(this).value()).show();
+
   $(this).closest('.cmd').find('.actionOption').hide();
   $(this).closest('.cmd').find('.actionOption.'+$(this).value()).show();
 });
@@ -101,6 +104,16 @@ function addCmdToTable(_cmd) {
         tr += '<div class="col-xs-6">';
           tr += '<input class="cmdAttr form-control actionParameter IO input-sm" data-l1key="configuration" data-l2key="actionParameterIO" placeholder="{{IO id}}" style="display:none;" />';
           tr += '<input class="cmdAttr form-control actionParameter Ana input-sm" data-l1key="configuration" data-l2key="actionParameterAna" placeholder="{{Analog id}}" style="display:none;" />';
+        tr += '</div>';
+        /***/
+
+        /* Action Command */
+        tr += '<div class="col-xs-6">';
+          tr += '<select class="cmdAttr form-control actionTypeCmd IO input-sm" data-l1key="configuration" data-l2key="actionTypeCmdIO">';
+            tr += '<option value="toggle" class="actionTypeCmdIO">{{Toggle}}</option>';
+            tr += '<option value="setOn"  class="actionTypeCmdIO">{{Set On}}</option>';
+            tr += '<option value="setOff" class="actionTypeCmdIO">{{Set Off}}</option>';
+          tr += '</select>';
         tr += '</div>';
         /***/
 
