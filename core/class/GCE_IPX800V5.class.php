@@ -304,11 +304,12 @@ class GCE_IPX800V5 extends eqLogic {
 	* Descr: polling on Ipx
 	*/
 	public static function pull($_eqLogic_id = null) {
-		if (self::$_eqLogics == null) {
-			self::$_eqLogics = self::byType('GCE_IPX800V5',true);
-		}else{
-          self::$_eqLogics = array(slef::byId($_eqLogic_id));
-        }
+	if (self::$_eqLogics == null) {
+		self::$_eqLogics = self::byType('GCE_IPX800V5',true);
+	}else{
+	       /*self::$_eqLogics = array(self::byId($_eqLogic_id));*/
+	      self::$_eqLogics = self::byType('GCE_IPX800V5',true);
+	}
 		$cache = array();
 		foreach (self::$_eqLogics as $GCE_IPX800V5) {
             foreach($GCE_IPX800V5->getCmd('info') as $cmd){
