@@ -304,24 +304,35 @@ class GCE_IPX800V5 extends eqLogic {
 	* Descr: polling on Ipx
 	*/
 	public static function pull($_eqLogic_id = null) {
-		if (self::$_eqLogics == null) {
-			self::$_eqLogics = self::byType('GCE_IPX800V5',true);
-		}else{
-          self::$_eqLogics = array(self::byId($_eqLogic_id));
-        }
+	if (self::$_eqLogics == null) {
+		self::$_eqLogics = self::byType('GCE_IPX800V5',true);
+	}else{
+	       /*self::$_eqLogics = array(self::byId($_eqLogic_id));*/
+	      self::$_eqLogics = self::byType('GCE_IPX800V5',true);
+	}
 		$cache = array();
 		foreach (self::$_eqLogics as $GCE_IPX800V5) {
             foreach($GCE_IPX800V5->getCmd('info') as $cmd){
+			/*	
+				
                 $arg = ($cmd->getConfiguration('infoType')) ? $cmd->getConfiguration('infoType') : $cmd->getConfiguration('actionArgument');
                 $id = $cmd->getConfiguration('infoParameter'.$arg);
                 if($id == ''){
                  	continue; 
                 }
+				*/
+				$arg = $cmd->getConfiguration('infoType') ?: $cmd->getConfiguration('actionArgument');
+$id = $cmd->getConfiguration('infoParameter'.$arg);
+if(empty($id)) {
+    continue; 
+}
+				
                 switch($arg){
                     case 'IO':
                     if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')]["io"])) {
                       $urlGet = 'http://' . $GCE_IPX800V5->getConfiguration('ip') . '/api/core/io?ApiKey=' . $GCE_IPX800V5->getConfiguration('apikey');
-                      $cache[$GCE_IPX800V5->getConfiguration('ip')]["io"] = GCE_IPX800V5::get($urlGet, 1); 
+					  $cache[$GCE_IPX800V5->getConfiguration('ip')]["io"] = $GCE_IPX800V5->get($urlGet, 1);
+                    //  $cache[$GCE_IPX800V5->getConfiguration('ip')]["io"] = GCE_IPX800V5::get($urlGet, 1); 
                     }
                     foreach($cache[$GCE_IPX800V5->getConfiguration('ip')]["io"] as $io){
                       if ($id == $io["_id"]) { 
@@ -333,7 +344,8 @@ class GCE_IPX800V5 extends eqLogic {
                     case 'Ana':
                     if (!isset($cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"])) {
                         $urlGet = 'http://' . $GCE_IPX800V5->getConfiguration('ip') . '/api/core/ana?ApiKey=' . $GCE_IPX800V5->getConfiguration('apikey');
-                        $cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"] = GCE_IPX800V5::get($urlGet, 1);
+                      //  $cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"] = GCE_IPX800V5::get($urlGet, 1);
+						$cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"] = $GCE_IPX800V5->get($urlGet, 1);
                     }
                     foreach($cache[$GCE_IPX800V5->getConfiguration('ip')]["ana"] as $ana){
                       if ($id == $ana["_id"]) { 
@@ -658,12 +670,17 @@ class GCE_IPX800V5 extends eqLogic {
 	*/
 	public function put($url, $data) {
 		$curl = curl_init($url);
-
+/*
 		$headers = array(
 			"X-CSRFToken:". $csrfToken,
 			"Referer: http://".$this->getConfiguration('ip'),
 		  "Content-Type: application/json"
 		);
+		*/
+		$headers = array(
+        "Referer: http://".$this->getConfiguration('ip'),
+       "Content-Type: application/json"
+        );
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST , "PUT");
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
