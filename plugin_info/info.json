@@ -1,6 +1,7 @@
 {
     "id": "GCE_IPX800V5",
     "name": "GCE IPX800 V5",
+	"version": "1.2.0",
     "description": {
         "fr_FR": "Plugin pour piloter l'IPX 800 V5",
         "en_US": "Plugin to control the IPX 800 V5",
